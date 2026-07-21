@@ -172,6 +172,32 @@
             box-shadow: 0 8px 24px rgba(138, 99, 43, 0.06);
         }
 
+        /* ===== NAV MOBILE TOGGLE ===== */
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            width: 34px;
+            height: 34px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 1100;
+            padding: 0;
+        }
+        .nav-toggle span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--text-dark);
+            transition: var(--transition);
+        }
+        .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .nav-toggle.open span:nth-child(2) { opacity: 0; }
+        .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
         /* ===== HERO SECTION ===== */
         .hero { padding: 7rem 0; position: relative; }
         .hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 4rem; align-items: center; }
@@ -883,7 +909,38 @@
             .process-interactive-grid { grid-template-columns: 1fr; gap: 1.5rem; }
         }
         @media (max-width: 600px) {
-            nav ul { display: none; }
+            .nav-toggle { display: flex; }
+
+            nav ul {
+                position: fixed;
+                top: 0;
+                right: 0;
+                height: 100vh;
+                width: min(75vw, 300px);
+                background: var(--bg-cream);
+                flex-direction: column;
+                justify-content: center;
+                align-items: flex-start;
+                gap: 2rem;
+                padding: 2rem 2.5rem;
+                margin: 0;
+                box-shadow: -10px 0 40px rgba(138, 99, 43, 0.15);
+                transform: translateX(100%);
+                transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+                z-index: 1050;
+            }
+            nav ul.open { transform: translateX(0); }
+            nav ul li { width: 100%; }
+            nav a { font-size: 0.9rem; }
+
+            .nav-overlay {
+                display: none;
+                position: fixed;
+                inset: 0;
+                background: rgba(43, 38, 31, 0.35);
+                z-index: 1040;
+            }
+            .nav-overlay.open { display: block; }
         }
 
         /* ===== BACK TO TOP ===== */
@@ -989,7 +1046,7 @@
         <nav>
             <div class="container nav-container">
                 <div class="logo">Art <span class="logo-gold">de</span> Excellence</div>
-                <ul>
+                <ul id="nav-menu">
                     <li><a href="#home" class="active">Home</a></li>
                     <li><a href="#services">Services</a></li>
                     <li><a href="#process">Process</a></li>
@@ -997,7 +1054,13 @@
                     <li><a href="#blog">Blog</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
+                <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
+            <div class="nav-overlay" id="nav-overlay"></div>
         </nav>
 
         <section class="hero" id="home">
@@ -1690,6 +1753,41 @@
         }
         window.addEventListener("scroll", revealOnScroll);
         revealOnScroll();
+
+        // Mobile nav hamburger toggle
+        const navToggle = document.getElementById('nav-toggle');
+        const navMenu = document.getElementById('nav-menu');
+        const navOverlay = document.getElementById('nav-overlay');
+
+        function closeMobileNav() {
+            navToggle.classList.remove('open');
+            navMenu.classList.remove('open');
+            navOverlay.classList.remove('open');
+            navToggle.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
+        }
+
+        function toggleMobileNav() {
+            const isOpen = navMenu.classList.toggle('open');
+            navToggle.classList.toggle('open', isOpen);
+            navOverlay.classList.toggle('open', isOpen);
+            navToggle.setAttribute('aria-expanded', String(isOpen));
+            document.body.style.overflow = isOpen ? 'hidden' : '';
+        }
+
+        if (navToggle) {
+            navToggle.addEventListener('click', toggleMobileNav);
+        }
+        if (navOverlay) {
+            navOverlay.addEventListener('click', closeMobileNav);
+        }
+        // Close menu after tapping a link, and on resize back to desktop width
+        document.querySelectorAll('#nav-menu a').forEach(link => {
+            link.addEventListener('click', closeMobileNav);
+        });
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 600) closeMobileNav();
+        });
 
         // Nav shrink + scrollspy + back-to-top + timeline rail fill
         const navEl = document.querySelector('nav');
