@@ -1,0 +1,1426 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Art De Excellence | Haute Joaillerie OEM/ODM Studio</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ================= LUXURY THEME VARIABLES ================= */
+:root[data-theme="light"] {
+  --bg-primary: #FAF8F5;
+  --bg-secondary: #F2ECE1;
+  --bg-card: #FFFFFF;
+  --text-primary: #141210;
+  --text-muted: #5E5852;
+  --gold: #C5A059;
+  --gold-dark: #9A7B3E;
+  --gold-light: #F3E5C8;
+  --gold-glow: rgba(197, 160, 89, 0.25);
+  --border: rgba(197, 160, 89, 0.35);
+  --shadow: 0 25px 50px -12px rgba(20, 18, 16, 0.12);
+  --nav-bg: rgba(250, 248, 245, 0.96);
+}
+
+:root[data-theme="dark"] {
+  --bg-primary: #080807;
+  --bg-secondary: #121110;
+  --bg-card: #181715;
+  --text-primary: #FAF7F2;
+  --text-muted: #A39C93;
+  --gold: #D4AF37;
+  --gold-dark: #A68A2A;
+  --gold-light: #F3E5C8;
+  --gold-glow: rgba(212, 175, 55, 0.28);
+  --border: rgba(212, 175, 55, 0.35);
+  --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+  --nav-bg: rgba(8, 8, 7, 0.96);
+}
+
+/* ================= BASE & GLOBAL STYLES ================= */
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Inter',sans-serif;
+  color:var(--text-primary);
+  background:var(--bg-primary);
+  overflow-x:hidden;
+  transition: background 0.5s ease, color 0.5s ease;
+  line-height:1.8;
+}
+
+.container{max-width:1800px;margin:0 auto;padding:0 50px;}
+h1,h2,h3,h4{font-family:'Cinzel',serif;color:var(--text-primary);font-weight:600;letter-spacing:1px;}
+a{text-decoration:none;color:inherit;}
+img{max-width:100%;display:block;height:auto;}
+
+/* SCROLL PROGRESS INDICATOR BAR */
+#scroll-progress {
+  position: fixed; top: 0; left: 0; height: 3px;
+  background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-light));
+  width: 0%; z-index: 10001; transition: width 0.1s ease-out;
+}
+
+/* CURSOR GLOW EFFECT */
+#cursor-glow {
+  position: fixed; width: 400px; height: 400px; border-radius: 50%;
+  background: radial-gradient(circle, var(--gold-glow) 0%, rgba(0,0,0,0) 70%);
+  pointer-events: none; transform: translate(-50%, -50%); z-index: 9999;
+  transition: transform 0.08s ease-out;
+}
+
+/* INTRO LOADER */
+#intro-loader {
+  position: fixed; inset: 0; background: #050504; z-index: 10000;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  color: var(--gold); transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+.loader-logo {
+  font-family: 'Cinzel', serif; font-size: 3rem; font-weight: 700; letter-spacing: 8px;
+  background: linear-gradient(90deg, var(--gold-dark), #FFF, var(--gold));
+  background-size: 200%; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  animation: shineAnimation 3s infinite linear;
+}
+@keyframes shineAnimation {
+  0% { background-position: -200%; }
+  100% { background-position: 200%; }
+}
+
+/* NAVIGATION & RECTANGLE SEARCH SLICER */
+nav {
+  position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+  background: var(--nav-bg); backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border); transition: all 0.4s ease;
+}
+.nav-container { display: flex; align-items: center; justify-content: space-between; height: 95px; gap: 2rem; }
+.logo { font-family: 'Cinzel', serif; font-size: 1.7rem; font-weight: 700; letter-spacing: 3px; cursor: pointer; white-space: nowrap; }
+.logo span { color: var(--gold); }
+.nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+.nav-links li a {
+  font-size: 0.8rem; font-weight: 600; position: relative; padding: 10px 0;
+  cursor: pointer; text-transform: uppercase; letter-spacing: 2px; transition: color 0.3s ease;
+}
+.nav-links li.active a, .nav-links li a:hover { color: var(--gold); }
+.nav-links li a::after {
+  content: ''; position: absolute; bottom: 0; left: 0; width: 0%; height: 2px;
+  background: var(--gold); transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.nav-links li.active a::after, .nav-links li a:hover::after { width: 100%; }
+
+.nav-controls { display: flex; align-items: center; gap: 1.2rem; }
+
+/* RECTANGLE SEARCH BAR SLICER WIDGET */
+.search-slicer {
+  display: flex; align-items: center; background: var(--bg-card);
+  border: 1px solid var(--border); border-radius: 4px; padding: 6px 14px;
+  width: 210px; transition: all 0.3s ease;
+}
+.search-slicer:focus-within {
+  border-color: var(--gold); box-shadow: 0 0 12px var(--gold-glow); width: 260px;
+}
+.search-slicer input {
+  border: none; outline: none; background: transparent; color: var(--text-primary);
+  font-family: inherit; font-size: 0.85rem; width: 100%; padding-right: 8px;
+}
+.search-slicer i { color: var(--gold); font-size: 0.9rem; cursor: pointer; }
+
+.theme-btn {
+  background: var(--bg-card); border: 1px solid var(--border); color: var(--gold);
+  width: 42px; height: 42px; border-radius: 50%; cursor: pointer; display: flex;
+  align-items: center; justify-content: center; font-size: 1rem; transition: all 0.4s ease; flex-shrink: 0;
+}
+.theme-btn:hover { transform: rotate(45deg) scale(1.08); border-color: var(--gold); }
+
+/* TAB TRANSITIONS & CONTENT */
+.tab-content {
+  display: none; padding-top: 95px; min-height: 100vh;
+  opacity: 0; transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.tab-content.active-tab { display: block; opacity: 1; transform: translateY(0); }
+
+/* HERO SECTIONS WITH TALL PADDING (100vh) */
+.hero-section {
+  padding: 10rem 0;
+  min-height: calc(100vh - 95px);
+  display: flex;
+  align-items: center;
+  background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+  position: relative; overflow: hidden;
+}
+.hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 5rem; align-items: center; position: relative; z-index: 2; width: 100%; }
+.hero-tag { color: var(--gold); letter-spacing: 5px; text-transform: uppercase; font-size: 0.85rem; font-weight: 700; margin-bottom: 1.5rem; display: block; }
+.hero-section h1 { font-size: clamp(3rem, 5.5vw, 4.8rem); line-height: 1.15; margin-bottom: 2rem; }
+.hero-section p { color: var(--text-muted); font-size: 1.15rem; margin-bottom: 2.5rem; max-width: 750px; }
+
+/* ORGANIZED ROW OF FLOATING CARDS (HOME EXCLUSIVE) */
+.cards-row {
+  display: flex;
+  gap: 1.5rem;
+  margin: 2.5rem 0 3.5rem 0;
+  flex-wrap: wrap;
+}
+
+.floating-card-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 16px 22px;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  backdrop-filter: blur(10px);
+  animation: floatAnim 4s ease-in-out infinite alternate;
+  flex: 1;
+  min-width: 220px;
+}
+
+.floating-card-item:nth-child(2) { animation-delay: 1.3s; }
+.floating-card-item:nth-child(3) { animation-delay: 2.6s; }
+
+@keyframes floatAnim {
+  0% { transform: translateY(0px); }
+  100% { transform: translateY(-10px); }
+}
+
+.floating-icon {
+  width: 42px; height: 42px; border-radius: 50%; background: var(--gold-glow);
+  color: var(--gold); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;
+}
+
+/* SECTION PADDING & HEADINGS */
+.section-padding { padding: 9rem 0; position: relative; }
+.section-head { text-align: center; max-width: 900px; margin: 0 auto 5rem; }
+.section-head span { color: var(--gold); text-transform: uppercase; letter-spacing: 4px; font-size: 0.85rem; font-weight: 700; }
+.section-head h2 { font-size: clamp(2.2rem, 4vw, 3.5rem); margin: 0.8rem 0 1.2rem; }
+.section-head p { color: var(--text-muted); font-size: 1.1rem; }
+
+/* BUTTONS */
+.btn {
+  position: relative; display: inline-flex; align-items: center; gap: 14px; padding: 18px 42px;
+  border-radius: 2px; font-weight: 600; font-size: 0.88rem; letter-spacing: 2px;
+  cursor: pointer; border: none; transition: all 0.4s ease; text-transform: uppercase; overflow: hidden;
+}
+.btn-primary { background: var(--gold); color: #FFF; box-shadow: 0 10px 25px -5px var(--gold); }
+.btn-primary:hover { background: var(--gold-dark); transform: translateY(-3px); box-shadow: 0 15px 35px -5px var(--gold); }
+.btn-secondary { background: transparent; border: 1px solid var(--border); color: var(--text-primary); }
+.btn-secondary:hover { border-color: var(--gold); color: var(--gold); background: var(--gold-glow); transform: translateY(-3px); }
+
+/* GRID LAYOUTS */
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; }
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4.5rem; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2.5rem; }
+
+/* PRODUCT & FEATURE CARDS */
+.product-card {
+  background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px;
+  overflow: hidden; transition: all 0.4s ease; box-shadow: var(--shadow); position: relative;
+  display: flex; flex-direction: column;
+}
+.product-card:hover { transform: translateY(-10px); border-color: var(--gold); }
+.product-img-box { position: relative; height: 420px; overflow: hidden; background: #121110; }
+.product-img-box img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; }
+.product-card:hover .product-img-box img { transform: scale(1.08); }
+
+.card-body { padding: 2.5rem; flex: 1; display: flex; flex-direction: column; }
+.card-body .category { color: var(--gold); font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; }
+.card-body h3 { font-size: 1.4rem; margin: 0.6rem 0 1rem; }
+.card-body p { color: var(--text-muted); font-size: 0.98rem; line-height: 1.8; margin-bottom: 1.5rem; }
+
+/* BADGES */
+.badge {
+  position: absolute; top: 20px; left: 20px; z-index: 5;
+  background: var(--gold); color: #fff; font-size: 0.75rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 2px; padding: 6px 14px; border-radius: 2px;
+}
+.badge-alt { background: var(--text-primary); color: var(--bg-primary); }
+
+/* RATING STARS */
+.stars { color: var(--gold); font-size: 0.95rem; margin-bottom: 0.8rem; }
+
+/* COUNTER METRICS */
+.counter-box { text-align: center; padding: 3.5rem 2rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; }
+.counter-number { font-family: 'Cinzel', serif; font-size: 3.5rem; font-weight: 700; color: var(--gold); margin-bottom: 0.5rem; }
+
+/* TIMELINE */
+.timeline { position: relative; max-width: 1200px; margin: 0 auto; }
+.timeline::before {
+  content: ''; position: absolute; left: 50%; top: 0; width: 2px; height: 100%;
+  background: var(--border); transform: translateX(-50%);
+}
+.timeline-item { display: flex; justify-content: flex-end; padding-right: 50px; position: relative; margin-bottom: 6rem; width: 50%; }
+.timeline-item:nth-child(even) { margin-left: auto; padding-right: 0; padding-left: 50px; justify-content: flex-start; }
+.timeline-dot {
+  position: absolute; right: -12px; top: 0; width: 24px; height: 24px; border-radius: 50%; background: var(--gold);
+  border: 4px solid var(--bg-primary); z-index: 2; box-shadow: 0 0 15px var(--gold);
+}
+.timeline-item:nth-child(even) .timeline-dot { left: -12px; right: auto; }
+.timeline-content { background: var(--bg-card); border: 1px solid var(--border); padding: 2.8rem; border-radius: 8px; box-shadow: var(--shadow); }
+
+/* ACCORDION FAQ */
+.faq-wrap { max-width: 1100px; margin: 0 auto; }
+.faq-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; margin-bottom: 2rem; overflow: hidden; transition: all 0.3s ease; }
+.faq-header { padding: 2rem 2.5rem; cursor: pointer; display: flex; align-items: center; justify-content: space-between; font-weight: 600; font-size: 1.15rem; }
+.faq-header i { color: var(--gold); transition: transform 0.4s ease; }
+.faq-body { max-height: 0; overflow: hidden; padding: 0 2.5rem; transition: max-height 0.4s ease, padding 0.4s ease; color: var(--text-muted); font-size: 1.05rem; }
+.faq-item.active { border-color: var(--gold); box-shadow: var(--shadow); }
+.faq-item.active .faq-header i { transform: rotate(180deg); }
+.faq-item.active .faq-body { max-height: 400px; padding: 0 2.5rem 2rem 2.5rem; }
+
+/* TABLE FOR METALLURGICAL DATA */
+.spec-table { width: 100%; border-collapse: collapse; margin-top: 2rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+.spec-table th, .spec-table td { padding: 1.8rem 2rem; text-align: left; border-bottom: 1px solid var(--border); }
+.spec-table th { background: var(--bg-secondary); color: var(--gold); font-family: 'Cinzel', serif; font-size: 1.05rem; }
+
+/* CONTACT FORM & LOCATIONS */
+.contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 5rem; }
+.contact-form { background: var(--bg-card); border: 1px solid var(--border); padding: 4rem; border-radius: 8px; display: grid; gap: 1.8rem; box-shadow: var(--shadow); }
+.form-control { padding: 18px; background: var(--bg-primary); border: 1px solid var(--border); border-radius: 4px; color: var(--text-primary); font-family: inherit; width: 100%; font-size: 1rem; transition: border-color 0.3s ease; }
+.form-control:focus { outline: none; border-color: var(--gold); }
+
+/* FOOTER */
+footer { background: #050504; color: #A39C93; padding: 8rem 0 3.5rem; border-top: 1px solid var(--border); }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 5rem; margin-bottom: 5rem; }
+.footer-col h4 { color: #FFF; font-size: 1.2rem; margin-bottom: 1.8rem; }
+.footer-col ul { list-style: none; }
+.footer-col li { margin-bottom: 1rem; font-size: 0.95rem; }
+.footer-col a:hover { color: var(--gold); }
+.footer-bottom { text-align: center; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 3rem; font-size: 0.9rem; }
+
+#backToTop {
+  position: fixed; bottom: 40px; right: 40px; background: var(--gold); color: #FFF;
+  width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center;
+  justify-content: center; cursor: pointer; border: none; opacity: 0; visibility: hidden;
+  transition: all 0.4s ease; z-index: 900; box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+}
+#backToTop.visible { opacity: 1; visibility: visible; }
+#backToTop:hover { transform: translateY(-5px) scale(1.05); background: var(--gold-dark); }
+
+@media(max-width: 1400px) {
+  .grid-3, .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .search-slicer { width: 160px; }
+  .search-slicer:focus-within { width: 210px; }
+}
+@media(max-width: 1024px) {
+  .hero-grid, .contact-grid, .grid-2 { grid-template-columns: 1fr; gap: 3.5rem; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .timeline::before { left: 0; }
+  .timeline-item, .timeline-item:nth-child(even) { width: 100%; padding-left: 35px; padding-right: 0; justify-content: flex-start; }
+  .timeline-dot, .timeline-item:nth-child(even) .timeline-dot { left: -12px; }
+  .search-slicer { display: none; }
+}
+@media(max-width: 650px) {
+  .grid-3, .grid-4, .footer-grid { grid-template-columns: 1fr; }
+  .product-img-box { height: 350px; }
+  .cards-row { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<!-- SCROLL PROGRESS INDICATOR -->
+<div id="scroll-progress"></div>
+
+<!-- CURSOR GLOW AND FOLLOW -->
+<div id="cursor-glow"></div>
+
+<!-- INTRO LOADER ANIMATION -->
+<div id="intro-loader">
+  <div class="loader-logo">ART DE EXCELLENCE</div>
+  <p style="font-size: 0.9rem; letter-spacing: 5px; color: #A39C93; margin-top: 12px;">HAUTE JOAILLERIE ATELIER</p>
+</div>
+
+<!-- NAVIGATION BAR WITH RECTANGLE SEARCH SLICER -->
+<nav>
+  <div class="container nav-container">
+    <a onclick="switchTab('home')" class="logo">Art <span>de</span> Excellence</a>
+    <ul class="nav-links">
+      <li class="active" id="nav-home"><a onclick="switchTab('home')">Home</a></li>
+      <li id="nav-about"><a onclick="switchTab('about')">About Us</a></li>
+      <li id="nav-services"><a onclick="switchTab('services')">Services</a></li>
+      <li id="nav-portfolio"><a onclick="switchTab('portfolio')">Portfolio</a></li>
+      <li id="nav-blog"><a onclick="switchTab('blog')">Blog</a></li>
+      <li id="nav-faq"><a onclick="switchTab('faq')">FAQ</a></li>
+      <li id="nav-contact"><a onclick="switchTab('contact')">Contact Us</a></li>
+    </ul>
+    
+    <div class="nav-controls">
+      <!-- RECTANGLE SEARCH BAR SLICER -->
+      <div class="search-slicer" title="Filter or search designs...">
+        <input type="text" placeholder="Search catalog..." id="navSearchInput">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </div>
+
+      <button class="theme-btn" id="themeToggle" title="Toggle Light/Dark Theme"><i class="fa-solid fa-moon"></i></button>
+    </div>
+  </div>
+</nav>
+
+<!-- ================= 1. HOME TAB (EXTENDED DEEP-SCROLL STRUCTURE) ================= -->
+<div id="tab-home" class="tab-content active-tab">
+  
+  <!-- HERO BANNER (100vh Layout) -->
+  <section class="hero-section">
+    <div class="container hero-grid">
+      <div>
+        <span class="hero-tag">Haute Joaillerie Atelier</span>
+        <h1>Mastery in Fine Jewelry Manufacturing</h1>
+        <p>Art De Excellence is a premier global OEM/ODM studio turning visionary sketches into flawless high-jewelry realities through micro-precision CAD engineering, microscopic setting, and certified gold metallurgy.</p>
+
+        <!-- CARDS ORDERLY ARRANGED IN A ROW -->
+        <div class="cards-row">
+          <div class="floating-card-item">
+            <div class="floating-icon"><i class="fa-solid fa-gem"></i></div>
+            <div>
+              <strong style="display:block; font-size:0.9rem;">40x Micro-Pave</strong>
+              <span style="font-size:0.78rem; color:var(--text-muted);">Leica Zoom Setting</span>
+            </div>
+          </div>
+
+          <div class="floating-card-item">
+            <div class="floating-icon"><i class="fa-solid fa-award"></i></div>
+            <div>
+              <strong style="display:block; font-size:0.9rem;">750 Pure Gold</strong>
+              <span style="font-size:0.78rem; color:var(--text-muted);">XRF Certified Alloys</span>
+            </div>
+          </div>
+
+          <div class="floating-card-item">
+            <div class="floating-icon"><i class="fa-solid fa-shield-halved"></i></div>
+            <div>
+              <strong style="display:block; font-size:0.9rem;">100% NDA Protection</strong>
+              <span style="font-size:0.78rem; color:var(--text-muted);">Exclusive Design IP</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex; gap:1.8rem; flex-wrap:wrap;">
+          <a onclick="switchTab('portfolio')" class="btn btn-primary">Explore Archive <i class="fa-solid fa-arrow-right"></i></a>
+          <a onclick="switchTab('contact')" class="btn btn-secondary">Start Private Order</a>
+        </div>
+      </div>
+      
+      <div>
+        <div style="border-radius:10px; overflow:hidden; border:1px solid var(--border); box-shadow:var(--shadow); height: 520px;">
+          <img src="jenna-day-B-JtfqdHemU-unsplash_2.jpg" alt="Fine Oval Diamond Ring" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⭐ FEATURED COLLECTIONS (Rings, Necklaces, Bracelets, Earrings) -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="section-head">
+        <span>Curated Categories</span>
+        <h2>Featured Collections</h2>
+        <p>Explore our cornerstone product lines, engineered specifically for high-volume brand replication and bespoke luxury commissions.</p>
+      </div>
+      
+      <div class="grid-4">
+        <div class="product-card">
+          <div class="product-img-box">
+            <img src="alvian-pratama-d5qU27rehlk-unsplash_2.jpg" alt="Fine Rings Collection">
+          </div>
+          <div class="card-body">
+            <span class="category">Category</span>
+            <h3>Fine Rings</h3>
+            <p>From solitaire engagement bands to tricolor interlocking rolling rings.</p>
+            <a onclick="switchTab('portfolio')" style="color:var(--gold); font-weight:600; cursor:pointer; margin-top:auto;">View Line <i class="fa-solid fa-chevron-right" style="font-size:0.8rem;"></i></a>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-img-box">
+            <img src="prahant-studio-1_bPdO6KyaI-unsplash.jpg" alt="Haute Necklaces Collection">
+          </div>
+          <div class="card-body">
+            <span class="category">Category</span>
+            <h3>Necklaces</h3>
+            <p>High-jewelry diamond suites, delicate pendants, and solid gold link chains.</p>
+            <a onclick="switchTab('portfolio')" style="color:var(--gold); font-weight:600; cursor:pointer; margin-top:auto;">View Line <i class="fa-solid fa-chevron-right" style="font-size:0.8rem;"></i></a>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-img-box">
+            <img src="ellie-eshaghi-suzH0nhfo0k-unsplash.jpg" alt="Luxury Bracelets Collection">
+          </div>
+          <div class="card-body">
+            <span class="category">Category</span>
+            <h3>Bracelets & Bangles</h3>
+            <p>Engineered hinges, solid bar bangles, and flexible tennis bracelets.</p>
+            <a onclick="switchTab('portfolio')" style="color:var(--gold); font-weight:600; cursor:pointer; margin-top:auto;">View Line <i class="fa-solid fa-chevron-right" style="font-size:0.8rem;"></i></a>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-img-box">
+            <img src="nataliya-melnychuk-Ki7TPcA9204-unsplash.jpg" alt="Statement Earrings Collection">
+          </div>
+          <div class="card-body">
+            <span class="category">Category</span>
+            <h3>Earrings</h3>
+            <p>Precision-balanced teardrop studs, twisted hoops, and micro-pave drops.</p>
+            <a onclick="switchTab('portfolio')" style="color:var(--gold); font-weight:600; cursor:pointer; margin-top:auto;">View Line <i class="fa-solid fa-chevron-right" style="font-size:0.8rem;"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⭐ BRAND STORY & INTRODUCTION PREVIEW -->
+  <section class="section-padding" style="background: var(--bg-secondary);">
+    <div class="container">
+      <div class="grid-2" style="align-items: center;">
+        <div style="border-radius:8px; overflow:hidden; border:1px solid var(--border); box-shadow:var(--shadow); height: 480px;">
+          <img src="luisana-galicia-rGz2Z6tVaeg-unsplash (1).jpg" alt="Brand Story Atelier Craftsmanship" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+        <div>
+          <span class="hero-tag" style="margin-bottom:0.8rem;">Brand Story Preview</span>
+          <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem;">Uniting Swiss Precision with Artisanal Heritage</h2>
+          <p style="color:var(--text-muted); font-size:1.05rem; margin-bottom:1.5rem;">For over twenty years, Art De Excellence has quietly operated behind the world’s leading jewelry houses. By blending automated lost-wax induction casting with hand-finished bench craft, we deliver unyielding structural integrity and luminous beauty.</p>
+          <div class="stars">★★★★★</div>
+          <p style="font-weight:600; font-size:0.95rem; margin-bottom:2rem;">⭐ "Trusted by 10,000+ Customers & Luxury Retailers Worldwide"</p>
+          <a onclick="switchTab('about')" class="btn btn-primary">Discover Our Legacy</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⭐ BEST-SELLING PRODUCT PREVIEW -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="section-head">
+        <span>Market Favorites</span>
+        <h2>Best-Selling Product Preview</h2>
+        <p>Our most requested OEM production silhouettes, celebrated for their exceptional stone retention and optical reflectivity.</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="product-card">
+          <span class="badge">Best Seller</span>
+          <div class="product-img-box">
+            <img src="jenna-day-B-JtfqdHemU-unsplash_2.jpg" alt="Oval Micro-Halo Ring">
+          </div>
+          <div class="card-body">
+            <div class="stars">★★★★★</div>
+            <span class="category">Bridal & Solitaires</span>
+            <h3>Oval Micro-Halo Engagement Ring</h3>
+            <p>18K solid white gold band featuring 40x Leica zoom micro-pave surround.</p>
+            <a onclick="switchTab('contact')" class="btn btn-secondary" style="margin-top:auto; justify-content:center;">Inquire OEM Batch</a>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <span class="badge">Best Seller</span>
+          <div class="product-img-box">
+            <img src="miao-xiang-hf6978Xi8Dw-unsplash_2.jpg" alt="Tricolor Rolling Ring">
+          </div>
+          <div class="card-body">
+            <div class="stars">★★★★★</div>
+            <span class="category">Signature Bands</span>
+            <h3>Tricolor Interlocking Rolling Band</h3>
+            <p>Seamless triple-alloy joining system ensuring ultra-smooth fluid mobility.</p>
+            <a onclick="switchTab('contact')" class="btn btn-secondary" style="margin-top:auto; justify-content:center;">Inquire OEM Batch</a>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <span class="badge">Best Seller</span>
+          <div class="product-img-box">
+            <img src="diego-castaneda-q4uRpPcvF88-unsplash_2.jpg" alt="Gold Teardrop Earrings">
+          </div>
+          <div class="card-body">
+            <div class="stars">★★★★★</div>
+            <span class="category">Fine Earrings</span>
+            <h3>High-Mirror Teardrop Drops</h3>
+            <p>Multi-stage electro-polished yellow gold with lightweight comfortable hollow core.</p>
+            <a onclick="switchTab('contact')" class="btn btn-secondary" style="margin-top:auto; justify-content:center;">Inquire OEM Batch</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⭐ LIMITED EDITION & EXCLUSIVE OFFER BANNERS -->
+  <section class="section-padding" style="background: var(--bg-secondary);">
+    <div class="container">
+      <div class="grid-2">
+        
+        <!-- Limited Edition Banner -->
+        <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:8px; padding:3.5rem; position:relative; overflow:hidden; box-shadow:var(--shadow);">
+          <span class="badge badge-alt" style="position:static; display:inline-block; margin-bottom:1.2rem;">⭐ Limited Edition</span>
+          <h3 style="font-size:2rem; margin-bottom:1rem;">The Champagne Gold Suite</h3>
+          <p style="color:var(--text-muted); margin-bottom:2rem;">Exclusive casting alloy run yielding a warm, subtle champagne tone available only for high-tier autumn seasonal orders.</p>
+          <a onclick="switchTab('contact')" class="btn btn-primary">Reserve Alloy Casting</a>
+        </div>
+
+        <!-- Exclusive Offer Banner -->
+        <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:8px; padding:3.5rem; position:relative; overflow:hidden; box-shadow:var(--shadow);">
+          <span class="badge" style="position:static; display:inline-block; margin-bottom:1.2rem;">⭐ Exclusive Offer</span>
+          <h3 style="font-size:2rem; margin-bottom:1rem;">Complimentary 3D CAD Prototyping</h3>
+          <p style="color:var(--text-muted); margin-bottom:2rem;">Receive free technical 3D CAD modeling and resin wax printing on all initial order commitments exceeding 50 units.</p>
+          <a onclick="switchTab('contact')" class="btn btn-secondary">Claim Cad Offer</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ⭐ WHY CHOOSE US & METRICS -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="section-head">
+        <span>The Atelier Advantage</span>
+        <h2>Why Choose Art De Excellence</h2>
+        <p>Engineered around precision, transparency, and uncompromising standards.</p>
+      </div>
+
+      <div class="grid-3" style="margin-bottom: 5rem;">
+        <div class="counter-box">
+          <i class="fa-solid fa-microscope" style="font-size:2.5rem; color:var(--gold); margin-bottom:1rem;"></i>
+          <h4 style="font-size:1.2rem; margin-bottom:0.5rem;">Micro-Precision Setting</h4>
+          <p style="color:var(--text-muted); font-size:0.95rem;">Stereoscopic Leica optical magnification guarantees seamless stone placement.</p>
+        </div>
+        <div class="counter-box">
+          <i class="fa-solid fa-flask-vial" style="font-size:2.5rem; color:var(--gold); margin-bottom:1rem;"></i>
+          <h4 style="font-size:1.2rem; margin-bottom:0.5rem;">XRF Certified Alloys</h4>
+          <p style="color:var(--text-muted); font-size:0.95rem;">Pure 18K and Platinum formulations verified through spectroscopic analysis.</p>
+        </div>
+        <div class="counter-box">
+          <i class="fa-solid fa-file-contract" style="font-size:2.5rem; color:var(--gold); margin-bottom:1rem;"></i>
+          <h4 style="font-size:1.2rem; margin-bottom:0.5rem;">Strict NDA Protection</h4>
+          <p style="color:var(--text-muted); font-size:0.95rem;">Full intellectual property non-disclosure safeguard for all brand assets.</p>
+        </div>
+      </div>
+
+      <!-- LIVE METRICS COUNTER ANIMATION -->
+      <div class="grid-3">
+        <div class="counter-box">
+          <div class="counter-number" data-target="15000">0</div>
+          <p style="text-transform:uppercase; letter-spacing:2px; font-weight:600; font-size:0.9rem;">Custom Pieces Cast</p>
+        </div>
+        <div class="counter-box">
+          <div class="counter-number" data-target="99">0</div>
+          <p style="text-transform:uppercase; letter-spacing:2px; font-weight:600; font-size:0.9rem;">% Stone Retention Precision</p>
+        </div>
+        <div class="counter-box">
+          <div class="counter-number" data-target="42">0</div>
+          <p style="text-transform:uppercase; letter-spacing:2px; font-weight:600; font-size:0.9rem;">Global Luxury House Partners</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⭐ FEATURED GEMSTONE OF THE MONTH & CRAFTSMANSHIP PREVIEW -->
+  <section class="section-padding" style="background: var(--bg-secondary);">
+    <div class="container">
+      <div class="grid-2" style="align-items: center; margin-bottom: 6rem;">
+        <div>
+          <span class="hero-tag" style="margin-bottom:0.8rem;">⭐ Gemstone Spotlight</span>
+          <h2 style="font-size:2.4rem; margin-bottom:1.2rem;">Featured Gemstone: Natural Emerald & Gem Cabochons</h2>
+          <p style="color:var(--text-muted); font-size:1.05rem; margin-bottom:1.5rem;">Hand-selected ethically sourced emeralds, chalcedony, and carnelian stones calibrated for custom bezel seatings. Each gem undergoes rigorous color spectrum grading and structural stress inspection.</p>
+          <a onclick="switchTab('services')" class="btn btn-primary">Learn Gem Grading</a>
+        </div>
+        <div style="border-radius:8px; overflow:hidden; border:1px solid var(--border); box-shadow:var(--shadow); height:420px;">
+          <img src="luisana-galicia-rGz2Z6tVaeg-unsplash (1).jpg" alt="Featured Gemstone Collection" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+      </div>
+
+      <div class="grid-2" style="align-items: center;">
+        <div style="border-radius:8px; overflow:hidden; border:1px solid var(--border); box-shadow:var(--shadow); height:420px;">
+          <img src="sabrianna-Y_bxfTa_iUA-unsplash.jpg" alt="Luxury Craftsmanship Spotlight" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+        <div>
+          <span class="hero-tag" style="margin-bottom:0.8rem;">⭐ Craftsmanship Preview</span>
+          <h2 style="font-size:2.4rem; margin-bottom:1.2rem;">Master Bench Micro-Setting</h2>
+          <p style="color:var(--text-muted); font-size:1.05rem; margin-bottom:1.5rem;">Our stone setters carve custom prongs directly out of structural cast metal, eliminating solder seams and producing clean, seamless light exposure across every diamond facet.</p>
+          <a onclick="switchTab('portfolio')" class="btn btn-secondary">View Pave Detail</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⭐ "NEW ARRIVAL" HIGHLIGHT & GALLERY -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="section-head">
+        <span>Atelier Additions</span>
+        <h2>⭐ New Arrival Highlights</h2>
+        <p>Freshly prototyped concepts and design releases now open for client customization and private manufacturing.</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="product-card">
+          <span class="badge">New Arrival</span>
+          <div class="product-img-box">
+            <img src="eve-maier-7uQQHORcTpc-unsplash_2.jpg" alt="Layered Medallion Chain">
+          </div>
+          <div class="card-body">
+            <span class="category">Necklaces</span>
+            <h3>Medallion Relief Pendant</h3>
+            <p>Layered 18K solid yellow gold chain with high-relief sculpted medallion centerpiece.</p>
+            <a onclick="switchTab('portfolio')" class="btn btn-secondary" style="margin-top:auto; justify-content:center;">View Details</a>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <span class="badge">New Arrival</span>
+          <div class="product-img-box">
+            <img src="nataliya-melnychuk-Ki7TPcA9204-unsplash.jpg" alt="Twisted Rope Hoops">
+          </div>
+          <div class="card-body">
+            <span class="category">Earrings</span>
+            <h3>Twisted Rope Gold Hoops</h3>
+            <p>Hollow-cast gold architectural hoops engineered for maximal volume with minimal wear weight.</p>
+            <a onclick="switchTab('portfolio')" class="btn btn-secondary" style="margin-top:auto; justify-content:center;">View Details</a>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <span class="badge">New Arrival</span>
+          <div class="product-img-box">
+            <img src="prahant-studio-1_bPdO6KyaI-unsplash.jpg" alt="High Jewelry Diamond Suite">
+          </div>
+          <div class="card-body">
+            <span class="category">Bespoke Suite</span>
+            <h3>Floral Diamond Suite</h3>
+            <p>Matching necklace and drop earring set set with marquise and brilliant cut stones.</p>
+            <a onclick="switchTab('portfolio')" class="btn btn-secondary" style="margin-top:auto; justify-content:center;">View Details</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⭐ CUSTOMER REVIEWS (★★★★★) -->
+  <section class="section-padding" style="background:var(--bg-secondary);">
+    <div class="container">
+      <div class="section-head">
+        <span>Testimonials & Social Proof</span>
+        <h2>Customer Reviews & Brand Feedback</h2>
+        <p>Read what our international jewelry brand directors and private trade clients say about our production quality.</p>
+      </div>
+
+      <div class="grid-3">
+        <div style="background:var(--bg-card); border:1px solid var(--border); padding:3rem; border-radius:8px; box-shadow:var(--shadow);">
+          <div class="stars">★★★★★</div>
+          <p style="color:var(--text-muted); font-size:0.98rem; margin-bottom:1.5rem; font-style:italic;">"Art De Excellence has handled our bridal ring production for three seasons. Their micro-pave stone setting precision is unmatched anywhere in Geneva."</p>
+          <strong style="display:block; font-size:1rem;">— Creative Director</strong>
+          <span style="font-size:0.82rem; color:var(--gold);">Geneva Haute House</span>
+        </div>
+
+        <div style="background:var(--bg-card); border:1px solid var(--border); padding:3rem; border-radius:8px; box-shadow:var(--shadow);">
+          <div class="stars">★★★★★</div>
+          <p style="color:var(--text-muted); font-size:0.98rem; margin-bottom:1.5rem; font-style:italic;">"The 3D CAD modeling team brought our complex multi-gold rolling bands to reality in less than two weeks. Zero porosity in casting."</p>
+          <strong style="display:block; font-size:1rem;">— Lead Metallurgist</strong>
+          <span style="font-size:0.82rem; color:var(--gold);">New York Fine Jewelry Studio</span>
+        </div>
+
+        <div style="background:var(--bg-card); border:1px solid var(--border); padding:3rem; border-radius:8px; box-shadow:var(--shadow);">
+          <div class="stars">★★★★★</div>
+          <p style="color:var(--text-muted); font-size:0.98rem; margin-bottom:1.5rem; font-style:italic;">"Trusted partners with total IP protection. Their NDA protocols give our board full confidence when launching confidential capsule lines."</p>
+          <strong style="display:block; font-size:1rem;">— Operations Head</strong>
+          <span style="font-size:0.82rem; color:var(--gold);">Tokyo Luxury Group</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⭐ NEWSLETTER CTA -->
+  <section class="section-padding">
+    <div class="container">
+      <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:8px; padding:5rem 3rem; text-align:center; box-shadow:var(--shadow);">
+        <span style="color:var(--gold); text-transform:uppercase; letter-spacing:4px; font-weight:700; font-size:0.85rem;">Stay Informed</span>
+        <h2 style="font-size:2.5rem; margin:0.8rem 0 1rem;">Join The Atelier Intelligence Digest</h2>
+        <p style="color:var(--text-muted); max-width:650px; margin:0 auto 2.5rem; font-size:1.05rem;">Subscribe to receive exclusive access to trade casting reports, trend forecasts, and priority CAD prototyping slots.</p>
+        <div style="display:flex; justify-content:center; gap:1rem; max-width:550px; margin:0 auto;">
+          <input type="email" class="form-control" placeholder="Enter corporate email address...">
+          <button class="btn btn-primary" style="white-space:nowrap;">Subscribe</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ================= 2. ABOUT US TAB ================= -->
+<div id="tab-about" class="tab-content">
+  <section class="hero-section">
+    <div class="container">
+      <div class="section-head">
+        <span>Our Heritage & Innovation</span>
+        <h2>Crafting Tomorrow's Heirlooms Today</h2>
+        <p>Founded on principles of metallurgical precision, Art De Excellence stands as an industry benchmark in private label manufacturing.</p>
+      </div>
+
+      <div class="grid-2" style="align-items:center; margin-bottom: 8rem;">
+        <div>
+          <h3 style="font-size:2.2rem; margin-bottom:1.5rem;">The Benchmark of High-Jewelry Production</h3>
+          <p style="color:var(--text-muted); font-size:1.05rem; margin-bottom:1.5rem;">Our state-of-the-art studio is equipped with advanced XRF alloy testing, automated lost-wax casting chambers, and microscopic stone-setting benches operated by master jewelers with over two decades of bench experience.</p>
+          <p style="color:var(--text-muted); font-size:1.05rem;">Every client project is protected under strict non-disclosure agreements, giving prestige brands absolute assurance of original IP safety and digital CAD confidentiality.</p>
+        </div>
+        <div style="border-radius:8px; overflow:hidden; border:1px solid var(--border); box-shadow:var(--shadow); height:480px;">
+          <img src="alvian-pratama-d5qU27rehlk-unsplash_2.jpg" alt="Solitaire Trio Diamond Rings" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+      </div>
+
+      <div class="section-head">
+        <span>The Atelier Workflow</span>
+        <h2>Six Stages of Fabrication</h2>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h4 style="color:var(--gold); font-size:1.2rem;">01. Concept & Technical CAD</h4>
+            <p style="color:var(--text-muted); margin-top:0.5rem;">Translating design sketches into parametric 3D CAD files calibrated for precise metal shrinkage and exact gemstone carat dimensions.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h4 style="color:var(--gold); font-size:1.2rem;">02. 3D Resin Prototyping</h4>
+            <p style="color:var(--text-muted); margin-top:0.5rem;">Printing high-resolution 10-micron wax resin models for physical inspection, weight testing, and master rubber mold preparation.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h4 style="color:var(--gold); font-size:1.2rem;">03. Vacuum Induction Casting</h4>
+            <p style="color:var(--text-muted); margin-top:0.5rem;">Liquefying certified 18K Gold, Platinum, or 925 Silver into oxygen-free vacuum induction chambers to eliminate porosity.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h4 style="color:var(--gold); font-size:1.2rem;">04. Micro-Pave Setting</h4>
+            <p style="color:var(--text-muted); margin-top:0.5rem;">Hand-setting natural diamonds or precious gemstones under 40x zoom Leica stereo microscopes for optimal light refraction.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ================= 3. SERVICES TAB (ZIGZAG LAYOUT) ================= -->
+<div id="tab-services" class="tab-content">
+  <section class="hero-section">
+    <div class="container">
+      <div class="section-head">
+        <span>Full-Spectrum Atelier Services</span>
+        <h2>Bespoke Capabilities For High-End Brands</h2>
+        <p>From individual masterpiece development to scalable OEM manufacturing for global retail networks.</p>
+      </div>
+
+      <!-- ZIGZAG ROW 1: TEXT LEFT, IMAGE RIGHT -->
+      <div class="grid-2" style="align-items:center; margin-bottom:8rem;">
+        <div>
+          <span style="color:var(--gold); letter-spacing:2px; font-weight:700; text-transform:uppercase; font-size:0.85rem;">Private Label Solutions</span>
+          <h3 style="font-size:2.2rem; margin:0.8rem 0 1.2rem;">Comprehensive OEM & ODM Production</h3>
+          <p style="color:var(--text-muted); font-size:1.05rem; margin-bottom:1.5rem;">We provide end-to-end support including ethical gemstone sourcing, custom gold alloy formulation (Yellow, Rose, White, and Champagne Gold), and laser-engraved personalized hallmark stamping.</p>
+          <a onclick="switchTab('contact')" class="btn btn-primary">Request Production Brief</a>
+        </div>
+        <div style="border-radius:8px; overflow:hidden; border:1px solid var(--border); box-shadow:var(--shadow); height:480px;">
+          <img src="anastasia-anastasia-lc_2pnDrwLo-unsplash_2.jpg" alt="Services Craftsmanship Display" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+      </div>
+
+      <!-- ZIGZAG ROW 2: IMAGE LEFT, TEXT RIGHT -->
+      <div class="grid-2" style="align-items:center; margin-bottom:8rem;">
+        <div style="border-radius:8px; overflow:hidden; border:1px solid var(--border); box-shadow:var(--shadow); height:480px;">
+          <img src="sabrianna-Y_bxfTa_iUA-unsplash.jpg" alt="Micro-Pave Gemstone Setting" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+        <div>
+          <span style="color:var(--gold); letter-spacing:2px; font-weight:700; text-transform:uppercase; font-size:0.85rem;">Micro-Precision Bench Work</span>
+          <h3 style="font-size:2.2rem; margin:0.8rem 0 1.2rem;">Leica Zoom Micro-Pave Setting</h3>
+          <p style="color:var(--text-muted); font-size:1.05rem; margin-bottom:1.5rem;">Our stone setters utilize high-magnification stereoscopic microscopes to position each diamond with sub-millimeter tolerances, securing gems seamlessly with minimal visible metal interference.</p>
+          <a onclick="switchTab('portfolio')" class="btn btn-secondary">View Pave Samples</a>
+        </div>
+      </div>
+
+      <!-- ZIGZAG ROW 3: TEXT LEFT, IMAGE RIGHT -->
+      <div class="grid-2" style="align-items:center; margin-bottom:8rem;">
+        <div>
+          <span style="color:var(--gold); letter-spacing:2px; font-weight:700; text-transform:uppercase; font-size:0.85rem;">Advanced Metallurgy</span>
+          <h3 style="font-size:2.2rem; margin:0.8rem 0 1.2rem;">Custom Precious Alloys & Castings</h3>
+          <p style="color:var(--text-muted); font-size:1.05rem; margin-bottom:1.5rem;">Formulating certified 18K gold and 950 platinum in closed oxygen-free induction chambers, producing zero-porosity castings prepared for high-lustre optical mirror polishing.</p>
+          <a onclick="switchTab('contact')" class="btn btn-primary">Consult Metallurgist</a>
+        </div>
+        <div style="border-radius:8px; overflow:hidden; border:1px solid var(--border); box-shadow:var(--shadow); height:480px;">
+          <img src="miao-xiang-hf6978Xi8Dw-unsplash_2.jpg" alt="Precious Metal Casting" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+      </div>
+
+      <div class="spec-table-wrap">
+        <div class="section-head">
+          <span>Alloy Technical Specifications</span>
+          <h2>Atelier Metal Purities & Properties</h2>
+        </div>
+        <table class="spec-table">
+          <thead>
+            <tr>
+              <th>Metal Purity</th>
+              <th>Gold/Platinum Content</th>
+              <th>Hardness (Vickers HV)</th>
+              <th>Recommended Application</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>18K Solid Yellow Gold</td>
+              <td>75.0% Fine Gold</td>
+              <td>150 - 160 HV</td>
+              <td>High Jewelry, Bridal Rings, Fine Medallions</td>
+            </tr>
+            <tr>
+              <td>18K Nickel-Free White Gold</td>
+              <td>75.0% Fine Gold + Palladium</td>
+              <td>180 - 200 HV</td>
+              <td>Micro-Pave Engagement Rings & Diamond Sets</td>
+            </tr>
+            <tr>
+              <td>Platinum 950</td>
+              <td>95.0% Pure Platinum</td>
+              <td>135 - 145 HV</td>
+              <td>Heirloom Solitaires & Heavy Stone Settings</td>
+            </tr>
+            <tr>
+              <td>925 Sterling Silver (Anti-Tarnish)</td>
+              <td>92.5% Pure Silver + Germanium</td>
+              <td>75 - 90 HV</td>
+              <td>Fashion Fine Jewelry & Micron Vermeil Pieces</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ================= 4. PORTFOLIO TAB ================= -->
+<div id="tab-portfolio" class="tab-content">
+  <section class="hero-section">
+    <div class="container">
+      <div class="section-head">
+        <span>Production Gallery</span>
+        <h2>Our Masterpiece Archive</h2>
+        <p>Explore a curated selection of fine jewelry pieces manufactured inside our private atelier.</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="product-card">
+          <div class="product-img-box">
+            <img src="eve-maier-7uQQHORcTpc-unsplash_2.jpg" alt="Gold Medallion and Layered Link Chains">
+          </div>
+          <div class="card-body">
+            <span class="category">Haute Pendants</span>
+            <h3>Layered Medallion Chain</h3>
+            <p>Solid 18K gold multi-tier chain featuring relief-engraved medallion centerpiece.</p>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-img-box">
+            <img src="nataliya-melnychuk-Ki7TPcA9204-unsplash.jpg" alt="Twisted Gold Hoop Earrings">
+          </div>
+          <div class="card-body">
+            <span class="category">Fine Earrings</span>
+            <h3>Twisted Gold Hoop Set</h3>
+            <p>Hollow-core twisted rope hoops designed for comfortable weight and brilliant shine.</p>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-img-box">
+            <img src="sabrianna-Y_bxfTa_iUA-unsplash.jpg" alt="Halo Diamond Ring with Split Shank">
+          </div>
+          <div class="card-body">
+            <span class="category">Bridal & Solitaires</span>
+            <h3>Split-Shank Halo Ring</h3>
+            <p>Vintage-inspired halo engagement ring with dual-tone rose and white gold milgrain accents.</p>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-img-box">
+            <img src="jenna-day-B-JtfqdHemU-unsplash_2.jpg" alt="Oval Diamond Engagement Ring">
+          </div>
+          <div class="card-body">
+            <span class="category">Signature Rings</span>
+            <h3>Oval Micro-Halo Solitaire</h3>
+            <p>Brilliant oval cut center diamond surrounded by micro-pave diamond halo.</p>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-img-box">
+            <img src="miao-xiang-hf6978Xi8Dw-unsplash_2.jpg" alt="Tricolor Interlocking Band">
+          </div>
+          <div class="card-body">
+            <span class="category">Bands</span>
+            <h3>Tricolor Rolling Ring</h3>
+            <p>Precision interlocking band combining Rose, Yellow, and White solid gold.</p>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-img-box">
+            <img src="diego-castaneda-q4uRpPcvF88-unsplash_2.jpg" alt="Gold Teardrop Drop Earrings">
+          </div>
+          <div class="card-body">
+            <span class="category">Earrings</span>
+            <h3>Polished Teardrop Studs</h3>
+            <p>Sculptural teardrop earrings finished with ultra-smooth optical mirror hand-buffing.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ================= 5. BLOG TAB ================= -->
+<div id="tab-blog" class="tab-content">
+  <section class="hero-section">
+    <div class="container">
+      <div class="section-head">
+        <span>The Craft Journal</span>
+        <h2>Insights Into High-Jewelry Manufacturing</h2>
+        <p>Technical articles, metallurgical analysis, and trend insights written by our master gemologists and engineering staff.</p>
+      </div>
+
+      <!-- BLOG GRID PART 1 -->
+      <div class="grid-3" style="margin-bottom: 5rem;">
+        <div class="product-card">
+          <div class="product-img-box" style="height:280px;">
+            <img src="anastasia-anastasia-lc_2pnDrwLo-unsplash_2.jpg" alt="Gold Alloy Metallurgy">
+          </div>
+          <div class="card-body">
+            <span class="category">Metallurgy</span>
+            <h3>14K vs. 18K Gold In Modern Casting</h3>
+            <p>Comparing Vickers hardness, tensile strength, and color saturation across commercial fine jewelry alloys for maximum longevity.</p>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-img-box" style="height:280px;">
+            <img src="alvian-pratama-d5qU27rehlk-unsplash_2.jpg" alt="CAD Design Optimization">
+          </div>
+          <div class="card-body">
+            <span class="category">3D Design</span>
+            <h3>Optimizing CAD Geometry For Stone Setting</h3>
+            <p>Reducing prong strain and metal fatigue during microscopic pave setting in modern halo engagement rings.</p>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-img-box" style="height:280px;">
+            <img src="eve-maier-7uQQHORcTpc-unsplash_2.jpg" alt="Finishing Techniques">
+          </div>
+          <div class="card-body">
+            <span class="category">Finishing</span>
+            <h3>Micron Gold Vermeil vs. Flash Plating</h3>
+            <p>How heavy-layer electroplating and palladium barrier coatings prolong retail shelf life and preserve brilliance.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- FEATURED SPOTLIGHT ARTICLE -->
+      <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:8px; padding:4rem; margin-bottom:5rem; box-shadow:var(--shadow);">
+        <div class="grid-2" style="align-items:center;">
+          <div>
+            <span class="hero-tag" style="margin-bottom:0.8rem;">Editor's Pick • July 2026</span>
+            <h3 style="font-size:2.2rem; margin-bottom:1.2rem;">The Rise of Recycled Platinum in Fine Bridal Engineering</h3>
+            <p style="color:var(--text-muted); font-size:1.05rem; margin-bottom:2rem;">Explore how closed-loop refined Platinum 950 eliminates environmental extraction footprints without forfeiting structural grain density or high-polish mirror finish quality required by prestige houses.</p>
+            <a href="#" class="btn btn-primary">Read Full Case Study <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+          <div style="border-radius:8px; overflow:hidden; height:350px;">
+            <img src="jenna-day-B-JtfqdHemU-unsplash_2.jpg" alt="Platinum Bridal Ring" style="width:100%; height:100%; object-fit:cover;">
+          </div>
+        </div>
+      </div>
+
+      <!-- BLOG GRID PART 2 -->
+      <div class="grid-3" style="margin-bottom: 5rem;">
+        <div class="product-card">
+          <div class="product-img-box" style="height:280px;">
+            <img src="sabrianna-Y_bxfTa_iUA-unsplash.jpg" alt="Gemstone Inspection">
+          </div>
+          <div class="card-body">
+            <span class="category">Gemology</span>
+            <h3>Detecting Lab-Grown Inclusions Under 50x</h3>
+            <p>Advanced spectroscopy and microscopic growth lines identification for certified diamond verification.</p>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-img-box" style="height:280px;">
+            <img src="nataliya-melnychuk-Ki7TPcA9204-unsplash.jpg" alt="Hollow Gold Molding">
+          </div>
+          <div class="card-body">
+            <span class="category">Casting Science</span>
+            <h3>Electroforming Hollow Gold Components</h3>
+            <p>Achieving massive visual volume while maintaining ultra-light comfortable weights for daily statement wear.</p>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-img-box" style="height:280px;">
+            <img src="miao-xiang-hf6978Xi8Dw-unsplash_2.jpg" alt="Tricolor Alloys">
+          </div>
+          <div class="card-body">
+            <span class="category">Jewelry Business</span>
+            <h3>Scaling OEM Runs For Global Fine Brands</h3>
+            <p>How strict quality control protocols ensure consistency across 1,000+ unit multi-regional retail launches.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</div>
+
+<!-- ================= 6. FAQ TAB (EXPANDED DEEP SCROLL WITH PICS) ================= -->
+<div id="tab-faq" class="tab-content">
+  <section class="hero-section">
+    <div class="container">
+      <div class="section-head">
+        <span>Knowledge Base</span>
+        <h2>Frequently Asked Questions</h2>
+        <p>Clear answers to common questions regarding our OEM/ODM manufacturing processes, order volumes, alloys, and timelines.</p>
+      </div>
+
+      <div class="faq-wrap" style="margin-bottom:6rem;">
+        <div class="faq-item active">
+          <div class="faq-header">
+            <span>What is your Minimum Order Quantity (MOQ) for custom production?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </div>
+          <div class="faq-body">
+            <p>We work flexibly with luxury partners. For custom CAD production, our standard MOQ starts at 10 pieces per design, while full collection ODM orders are tailored according to specific precious metal weights and gemstone requirements.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-header">
+            <span>How long does a full production cycle take from design to delivery?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </div>
+          <div class="faq-body">
+            <p>Initial 3D CAD modeling and rendering are completed within 3 to 5 business days. Once approved, wax printing, casting, setting, and hand-polishing take approximately 3 to 4 weeks depending on order volume and design complexity.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-header">
+            <span>How do you protect intellectual property and custom designs?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </div>
+          <div class="faq-body">
+            <p>All client partnerships are protected under legally binding non-disclosure agreements (NDAs). Your 3D CAD files and custom molds are stored securely and never reused, displayed, or shared without prior written consent.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-header">
+            <span>Do you provide certified metal hallmarks and gem testing?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </div>
+          <div class="faq-body">
+            <p>Yes. All precious metal pieces are XRF-analyzed and stamped with certified purity hallmarks (e.g., 750 for 18K, 950 for Platinum). Independent laboratory certificates (GIA, IGI) can be supplied for center diamonds and precious gems.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-header">
+            <span>Can you accommodate client-supplied gemstones or diamonds?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </div>
+          <div class="faq-body">
+            <p>Absolutely. We accept customer-provided gems via insured courier. Our gemologists inspect each stone upon arrival, record precise millimeter dimensions and laser inscriptions, and calibrate CAD seats for zero setting tension.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-header">
+            <span>What shipping carriers and insurance protocols are utilized?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </div>
+          <div class="faq-body">
+            <p>All international orders are dispatched via armored logistics (FedEx International Priority with Malca-Amit or Brink's insurance coverage). Every shipment is fully insured from atelier exit to final door-to-door delivery signature.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- VISUAL GALLERY SECTION IN FAQ -->
+      <div class="section-head" style="margin-top: 6rem;">
+        <span>Quality Assurance Standards</span>
+        <h2>Craftsmanship Inspection & Standards</h2>
+        <p>Every piece undergoes multi-stage microscopic checks and stringent quality control protocols.</p>
+      </div>
+
+      <div class="grid-2" style="margin-bottom: 6rem; align-items: stretch;">
+        <div class="product-card" style="display:flex; flex-direction:column;">
+          <div class="product-img-box" style="height:380px;">
+            <img src="zayed-ahmed-zadu-f3Et0R5KFUs-unsplash.jpg" alt="Traditional Gold Ring Displays and Setting Inspection">
+          </div>
+          <div class="card-body" style="flex:1;">
+            <span class="category">Batch Verification</span>
+            <h3>Precision Mold & Tray Alignment</h3>
+            <p>Each custom ring design undergoes geometric tolerance checks and weight variance inspection across full tray production runs.</p>
+          </div>
+        </div>
+
+        <div class="product-card" style="display:flex; flex-direction:column;">
+          <div class="product-img-box" style="height:380px;">
+            <img src="ellie-eshaghi-suzH0nhfo0k-unsplash.jpg" alt="Gold Bangle and Fine Ring Layout">
+          </div>
+          <div class="card-body" style="flex:1;">
+            <span class="category">Reflective Surface Check</span>
+            <h3>Geometric Surface Finish & Symmetry</h3>
+            <p>Rigorous optical inspections evaluate light reflection, clasp tension, and seamless hinge articulation before final dispatch.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</div>
+
+<!-- ================= 7. CONTACT US TAB (EXPANDED DEEP SCROLL WITH PICS) ================= -->
+<div id="tab-contact" class="tab-content">
+  <section class="hero-section">
+    <div class="container">
+      <div class="section-head">
+        <span>Start A Collaboration</span>
+        <h2>Get In Touch With Our Studio</h2>
+        <p>Send us your project brief or schedule a private consultation with our technical jewelers.</p>
+      </div>
+
+      <div class="contact-grid" style="margin-bottom:6rem;">
+        <div>
+          <h3 style="font-size:2.2rem; margin-bottom:1.2rem;">Atelier Headquarters</h3>
+          <p style="color:var(--text-muted); font-size:1.05rem; margin-bottom:2rem;">Our primary manufacturing facility and private showroom are accessible by appointment for brand partners and trade clients.</p>
+          
+          <div style="display:grid; gap:1.5rem; margin-bottom:2.5rem;">
+            <div style="display:flex; align-items:center; gap:1.2rem;">
+              <i class="fa-solid fa-location-dot" style="color:var(--gold); font-size:1.3rem;"></i>
+              <span style="font-size:1rem;">Haute Joaillerie District, Geneva, Switzerland</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:1.2rem;">
+              <i class="fa-solid fa-envelope" style="color:var(--gold); font-size:1.3rem;"></i>
+              <span style="font-size:1rem;">contact@artdeexcellence.com</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:1.2rem;">
+              <i class="fa-solid fa-phone" style="color:var(--gold); font-size:1.3rem;"></i>
+              <span style="font-size:1rem;">+41 22 819 9000</span>
+            </div>
+          </div>
+        </div>
+
+        <form class="contact-form" onsubmit="event.preventDefault(); alert('Thank you for your message. Our team will contact you within 24 hours.');">
+          <input type="text" class="form-control" placeholder="Your Full Name" required>
+          <input type="email" class="form-control" placeholder="Company Email Address" required>
+          <input type="text" class="form-control" placeholder="Brand / Company Name">
+          <select class="form-control" style="color:var(--text-muted);">
+            <option>Select Service Interest...</option>
+            <option>Custom CAD & 3D Prototyping</option>
+            <option>18K Gold OEM Mass Production</option>
+            <option>Gemstone Sourcing & Micro-Pave</option>
+            <option>Private Label Brand ODM</option>
+          </select>
+          <textarea class="form-control" rows="5" placeholder="Tell us about your project requirements or production volume..." required></textarea>
+          <button type="submit" class="btn btn-primary" style="justify-content:center;">Submit Inquiry <i class="fa-solid fa-paper-plane"></i></button>
+        </form>
+      </div>
+
+      <!-- VISUAL SHOWCASE SECTION IN CONTACT -->
+      <div class="section-head" style="margin-top: 6rem;">
+        <span>Private Consultations & Samples</span>
+        <h2>High-Jewelry Design Consultations</h2>
+        <p>Preview material samples, gemstone palettes, and customized design layouts during your private intake.</p>
+      </div>
+
+      <div class="grid-2" style="margin-bottom:6rem; align-items: stretch;">
+        <div class="product-card" style="display:flex; flex-direction:column;">
+          <div class="product-img-box" style="height:380px;">
+            <img src="luisana-galicia-rGz2Z6tVaeg-unsplash (1).jpg" alt="Gemstone Ring Selection on Silk & Stone">
+          </div>
+          <div class="card-body" style="flex:1;">
+            <span class="category">Material Selection</span>
+            <h3>Bespoke Gemstone & Ring Sampling</h3>
+            <p>Review precious cabochons, solid gold bands, and unique custom settings with our master gemologists.</p>
+          </div>
+        </div>
+
+        <div class="product-card" style="display:flex; flex-direction:column;">
+          <div class="product-img-box" style="height:380px;">
+            <img src="prahant-studio-1_bPdO6KyaI-unsplash.jpg" alt="Diamond Necklace and Earring Set Design Brief">
+          </div>
+          <div class="card-body" style="flex:1;">
+            <span class="category">Client Intake</span>
+            <h3>Haute Suite Design Reviews</h3>
+            <p>Collaborate directly on technical CAD schematics and matching suite assemblies for bespoke client commissions.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</div>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <a class="logo" style="display:inline-block; margin-bottom:1.5rem;">Art <span>de</span> Excellence</a>
+        <p style="line-height:1.8;">Leading high-jewelry OEM/ODM studio specializing in micro-precision CAD, vacuum induction casting, and fine gemstone setting for global prestige brands.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a onclick="switchTab('home')">Home</a></li>
+          <li><a onclick="switchTab('about')">About Us</a></li>
+          <li><a onclick="switchTab('services')">Services</a></li>
+          <li><a onclick="switchTab('portfolio')">Portfolio</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a onclick="switchTab('blog')">Blog</a></li>
+          <li><a onclick="switchTab('faq')">FAQ</a></li>
+          <li><a onclick="switchTab('contact')">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <div style="display:flex; gap:1.2rem; font-size:1.4rem; margin-top:1rem;">
+          <a href="#" style="color:var(--gold);"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" style="color:var(--gold);"><i class="fa-brands fa-linkedin"></i></a>
+          <a href="#" style="color:var(--gold);"><i class="fa-brands fa-pinterest"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Art De Excellence Atelier. All Rights Reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- BACK TO TOP BUTTON -->
+<button id="backToTop" title="Back to Top"><i class="fa-solid fa-arrow-up"></i></button>
+
+<!-- ================= JAVASCRIPT INTERACTIONS ================= -->
+<script>
+// Tab Switching System
+function switchTab(tabId) {
+  const contents = document.querySelectorAll('.tab-content');
+  const navItems = document.querySelectorAll('.nav-links li');
+  
+  contents.forEach(content => {
+    content.classList.remove('active-tab');
+  });
+  navItems.forEach(item => {
+    item.classList.remove('active');
+  });
+
+  const selectedTab = document.getElementById('tab-' + tabId);
+  const selectedNav = document.getElementById('nav-' + tabId);
+
+  if (selectedTab) {
+    selectedTab.classList.add('active-tab');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  if (selectedNav) {
+    selectedNav.classList.add('active');
+  }
+}
+
+// Intro Loader Hide Animation
+window.addEventListener('load', () => {
+  const loader = document.getElementById('intro-loader');
+  setTimeout(() => {
+    loader.style.opacity = '0';
+    loader.style.visibility = 'hidden';
+    startCounters();
+  }, 1000);
+});
+
+// Scroll Progress Bar & Back to Top Button Logic
+window.addEventListener('scroll', () => {
+  const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (winScroll / height) * 100;
+  document.getElementById('scroll-progress').style.width = scrolled + '%';
+
+  const backToTop = document.getElementById('backToTop');
+  if (winScroll > 350) {
+    backToTop.classList.add('visible');
+  } else {
+    backToTop.classList.remove('visible');
+  }
+});
+
+document.getElementById('backToTop').addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// Light/Dark Theme Toggle
+const themeBtn = document.getElementById('themeToggle');
+themeBtn.addEventListener('click', () => {
+  const html = document.documentElement;
+  const currentTheme = html.getAttribute('data-theme');
+  const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+  html.setAttribute('data-theme', newTheme);
+  
+  const icon = themeBtn.querySelector('i');
+  if (newTheme === 'dark') {
+    icon.className = 'fa-solid fa-sun';
+  } else {
+    icon.className = 'fa-solid fa-moon';
+  }
+});
+
+// Cursor Follow Glow Effect
+const cursor = document.getElementById('cursor-glow');
+document.addEventListener('mousemove', (e) => {
+  cursor.style.left = e.clientX + 'px';
+  cursor.style.top = e.clientY + 'px';
+});
+
+// FAQ Accordion Interaction
+document.querySelectorAll('.faq-header').forEach(header => {
+  header.addEventListener('click', () => {
+    const parent = header.parentElement;
+    parent.classList.toggle('active');
+  });
+});
+
+// Live Metrics Counter Animation
+function startCounters() {
+  const counters = document.querySelectorAll('.counter-number');
+  counters.forEach(counter => {
+    const target = +counter.getAttribute('data-target');
+    const increment = target / 70;
+    
+    const updateCounter = () => {
+      const count = +counter.innerText;
+      if (count < target) {
+        counter.innerText = Math.ceil(count + increment);
+        setTimeout(updateCounter, 25);
+      } else {
+        counter.innerText = target.toLocaleString();
+      }
+    };
+    updateCounter();
+  });
+}
+</script>
+
+</body>
+</html>
