@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AUREL — Fine Jewelry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:      #FBF6EE;
+    --cream-deep: #F1E8D8;
+    --ink:        #241F19;
+    --ink-soft:   #55493A;
+    --gold:       #B08A4E;
+    --gold-deep:  #7C5E30;
+    --line:       rgba(36,31,25,0.14);
+  }
+
+  .aurel-home{
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Jost', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .aurel-home *{ box-sizing: border-box; }
+  .aurel-home img{ max-width: 100%; display:block; }
+  .aurel-home a{ color: inherit; text-decoration: none; }
+  .aurel-home .serif{ font-family: 'Cormorant Garamond', serif; }
+
+  .aurel-wrap{
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 6vw;
+  }
+
+  /* ---------- Header ---------- */
+  .aurel-header{
+    position: relative;
+    z-index: 5;
+    padding: 30px 0 0;
+  }
+  .aurel-header .aurel-wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .aurel-logo{
+    font-family:'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 28px;
+    letter-spacing: 0.14em;
+  }
+  .aurel-nav{
+    display:flex;
+    gap: 40px;
+    list-style:none;
+    margin:0; padding:0;
+    font-size: 13px;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+  }
+  .aurel-nav a{
+    position: relative;
+    padding-bottom: 4px;
+    opacity: 0.85;
+  }
+  .aurel-nav a:hover{ opacity: 1; }
+  .aurel-nav a::after{
+    content:"";
+    position:absolute; left:0; right:100%; bottom:0;
+    height:1px; background: var(--gold-deep);
+    transition: right .35s ease;
+  }
+  .aurel-nav a:hover::after{ right: 0; }
+  .aurel-header-cta{
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: 1px solid var(--ink);
+    padding: 10px 20px;
+    border-radius: 999px;
+  }
+
+  /* ---------- Hero ---------- */
+  .aurel-hero{
+    position: relative;
+    overflow: hidden;
+    padding-top: 40px;
+  }
+  .aurel-hero .aurel-wrap{
+    display:grid;
+    grid-template-columns: 1.05fr 1fr;
+    align-items:center;
+    gap: 40px;
+    min-height: 84vh;
+  }
+  .aurel-eyebrow{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold-deep);
+    margin-bottom: 26px;
+  }
+  .aurel-eyebrow::before{
+    content:"";
+    width: 34px; height:1px;
+    background: var(--gold-deep);
+  }
+  .aurel-hero h1{
+    font-family:'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: clamp(42px, 5.4vw, 78px);
+    line-height: 1.02;
+    letter-spacing: -0.01em;
+    margin: 0 0 28px;
+  }
+  .aurel-hero h1 em{
+    font-style: italic;
+    font-weight: 400;
+    color: var(--gold-deep);
+  }
+  .aurel-hero p.lede{
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+    max-width: 440px;
+    margin: 0 0 40px;
+  }
+  .aurel-hero-actions{
+    display:flex;
+    align-items:center;
+    gap: 28px;
+  }
+  .aurel-btn-primary{
+    background: var(--ink);
+    color: var(--cream);
+    padding: 16px 34px;
+    border-radius: 999px;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: transform .3s ease, background .3s ease;
+    display:inline-block;
+  }
+  .aurel-btn-primary:hover{ background: var(--gold-deep); transform: translateY(-2px); }
+  .aurel-link-secondary{
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 3px;
+  }
+
+  .aurel-hero-visual{
+    position: relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .aurel-hero-visual::before{
+    content:"";
+    position:absolute;
+    width: 78%;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--cream-deep) 0%, rgba(241,232,216,0) 70%);
+    z-index:0;
+  }
+  .aurel-ring-img{
+    position: relative;
+    z-index:1;
+    width: 62%;
+    max-width: 380px;
+    filter: drop-shadow(0 30px 40px rgba(124,94,48,0.25));
+  }
+  .aurel-locket-float{
+    position:absolute;
+    z-index:2;
+    width: 30%;
+    max-width: 165px;
+    right: 4%;
+    bottom: 6%;
+    border-radius: 18px;
+    box-shadow: 0 20px 45px rgba(36,31,25,0.18);
+    background: var(--cream);
+    padding: 10px;
+    animation: aurelFloat 5.5s ease-in-out infinite;
+  }
+  @keyframes aurelFloat{
+    0%, 100%{ transform: translateY(0); }
+    50%{ transform: translateY(-14px); }
+  }
+
+  .aurel-signature-svg{
+    position:absolute;
+    top: 6%;
+    left: -4%;
+    width: 140px;
+    opacity: 0.55;
+    z-index:0;
+  }
+  .aurel-signature-svg path{
+    fill:none;
+    stroke: var(--gold);
+    stroke-width: 1.2;
+    stroke-dasharray: 400;
+    stroke-dashoffset: 400;
+    animation: aurelDraw 2.6s ease forwards 0.4s;
+  }
+  @keyframes aurelDraw{ to{ stroke-dashoffset: 0; } }
+
+  /* ---------- Material strip ---------- */
+  .aurel-strip{
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: 18px 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .aurel-strip-track{
+    display:inline-flex;
+    gap: 60px;
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    animation: aurelScroll 26s linear infinite;
+  }
+  .aurel-strip-track span{ display:flex; align-items:center; gap:60px; }
+  .aurel-strip-track span::after{ content:"◆"; color: var(--gold); font-size:8px; margin-left:60px; }
+  @keyframes aurelScroll{
+    from{ transform: translateX(0); }
+    to{ transform: translateX(-50%); }
+  }
+
+  /* ---------- Featured piece ---------- */
+  .aurel-featured{
+    padding: 140px 0 120px;
+  }
+  .aurel-featured .aurel-wrap{
+    display:grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 70px;
+    align-items:center;
+  }
+  .aurel-featured-visual{
+    position:relative;
+  }
+  .aurel-featured-visual img{
+    width: 100%;
+    border-radius: 14px;
+  }
+  .aurel-featured-visual .aurel-detail{
+    position:absolute;
+    width: 42%;
+    bottom: -10%;
+    left: -12%;
+    border-radius: 12px;
+    border: 6px solid var(--cream);
+    box-shadow: 0 25px 50px rgba(36,31,25,0.2);
+  }
+  .aurel-featured-copy .aurel-eyebrow{ margin-bottom: 22px; }
+  .aurel-featured-copy h2{
+    font-family:'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: clamp(34px, 3.6vw, 52px);
+    line-height: 1.08;
+    margin: 0 0 24px;
+  }
+  .aurel-featured-copy p{
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--ink-soft);
+    max-width: 420px;
+    margin: 0 0 20px;
+  }
+  .aurel-spec-list{
+    list-style:none;
+    margin: 34px 0 40px;
+    padding: 0;
+    border-top: 1px solid var(--line);
+  }
+  .aurel-spec-list li{
+    display:flex;
+    justify-content:space-between;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 14px;
+  }
+  .aurel-spec-list li span:first-child{ color: var(--ink-soft); }
+  .aurel-spec-list li span:last-child{ font-family:'Cormorant Garamond', serif; font-size: 17px; }
+
+  @media (max-width: 900px){
+    .aurel-nav{ display:none; }
+    .aurel-hero .aurel-wrap{ grid-template-columns: 1fr; min-height: auto; padding-top: 20px; padding-bottom: 60px; }
+    .aurel-hero p.lede{ max-width: none; }
+    .aurel-hero-visual{ margin-top: 40px; }
+    .aurel-featured .aurel-wrap{ grid-template-columns: 1fr; }
+    .aurel-featured-visual{ margin-bottom: 70px; }
+    .aurel-featured-copy p{ max-width:none; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .aurel-locket-float, .aurel-strip-track, .aurel-signature-svg path{ animation: none !important; }
+  }
+</style>
+</head>
+<body class="aurel-home">
+
+  <header class="aurel-header">
+    <div class="aurel-wrap">
+      <a href="#" class="aurel-logo">AUREL</a>
+      <ul class="aurel-nav">
+        <li><a href="#">Rings</a></li>
+        <li><a href="#">Necklaces</a></li>
+        <li><a href="#">Lockets</a></li>
+        <li><a href="#">About</a></li>
+      </ul>
+      <a href="#" class="aurel-header-cta">Book a Fitting</a>
+    </div>
+  </header>
+
+  <section class="aurel-hero">
+    <svg class="aurel-signature-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <path d="M50 88 C 15 62, 8 38, 26 24 C 38 15, 50 24, 50 36 C 50 24, 62 15, 74 24 C 92 38, 85 62, 50 88 Z"/>
+    </svg>
+    <div class="aurel-wrap">
+      <div class="aurel-hero-copy">
+        <div class="aurel-eyebrow">18K Gold · Made to keep</div>
+        <h1>A ring for<br><em>today.</em> A locket<br>for always.</h1>
+        <p class="lede">Each piece is cast in solid gold and set by hand — the diamond you say yes to, and the locket you fill with the faces you love.</p>
+        <div class="aurel-hero-actions">
+          <a href="#featured" class="aurel-btn-primary">Explore the Collection</a>
+          <a href="#" class="aurel-link-secondary">Our Craft</a>
+        </div>
+      </div>
+      <div class="aurel-hero-visual">
+        <img class="aurel-ring-img" src="images/ring.webp" alt="Solitaire diamond engagement ring in 18K gold">
+        <img class="aurel-locket-float" src="images/locket-closeup.png" alt="Gold heart locket with diamond accent">
+      </div>
+    </div>
+  </section>
+
+  <div class="aurel-strip">
+    <div class="aurel-strip-track">
+      <span>18K Solid Gold</span>
+      <span>Conflict-Free Stones</span>
+      <span>Hand-Set in Small Batches</span>
+      <span>Free Resizing, Always</span>
+      <span>Lifetime Polish</span>
+    </div>
+  </div>
+
+  <section class="aurel-featured" id="featured">
+    <div class="aurel-wrap">
+      <div class="aurel-featured-visual">
+        <img src="images/necklace-locket.png" alt="Gold heart locket necklace paired with a diamond ring">
+        <img class="aurel-detail" src="images/locket-closeup.png" alt="Close-up of the diamond-set heart locket">
+      </div>
+      <div class="aurel-featured-copy">
+        <div class="aurel-eyebrow">The Signature Piece</div>
+        <h2 class="serif">The Locket Pendant</h2>
+        <p>A heart locket in polished 18K gold, set with a single diamond and hinged to open. Slip in two photographs no bigger than a thumbnail — the two people, or the one day, you want closest to you.</p>
+        <ul class="aurel-spec-list">
+          <li><span>Metal</span><span>18K Yellow Gold</span></li>
+          <li><span>Stone</span><span>0.15ct Round Diamond</span></li>
+          <li><span>Chain</span><span>18" Cable, Adjustable</span></li>
+          <li><span>Opens for</span><span>2 Photos</span></li>
+        </ul>
+        <a href="#" class="aurel-btn-primary">Shop the Locket</a>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
